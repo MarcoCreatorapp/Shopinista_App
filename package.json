@@ -23,18 +23,18 @@
   "dependencies": {
     "@canva/app-hooks": "^0.0.0-beta.4",
     "@canva/app-i18n-kit": "^1.2.0",
-    "@canva/app-ui-kit": "^5.3.0",
-    "@canva/asset": "^2.2.2",
+    "@canva/app-ui-kit": "^5.4.0",
+    "@canva/asset": "^2.3.0",
     "@canva/design": "^2.7.5",
     "@canva/error": "^2.1.0",
     "@canva/intents": "^2.0.0",
     "@canva/platform": "^2.2.0",
-    "@canva/user": "^2.1.1",
+    "@canva/user": "^2.1.2",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-error-boundary": "6.0.0",
     "react-intl": "^7.1.11",
-    "react-router-dom": "7.8.2"
+    "react-router-dom": "^7.12.0"
   },
   "devDependencies": {
     "@canva/app-eslint-plugin": "^1.0.0-beta.7",
@@ -45,6 +45,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "0.6.1",
     "@svgr/webpack": "8.1.0",
     "@testing-library/react": "16.3.0",
+    "@types/compression-webpack-plugin": "^9.0.0",
     "@types/debug": "4.1.12",
     "@types/express": "4.17.21",
     "@types/jest": "29.5.14",
@@ -58,6 +59,7 @@
     "@types/webpack-env": "1.18.8",
     "chalk": "4.1.2",
     "cli-table3": "0.6.5",
+    "compression-webpack-plugin": "^11.1.0",
     "css-loader": "7.1.2",
     "css-modules-typescript-loader": "4.0.1",
     "cssnano": "7.1.1",

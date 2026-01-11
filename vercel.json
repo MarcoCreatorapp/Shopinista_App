@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/oauth/authorize",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/oauth/token",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/oauth/revoke",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/$1"
+    }
+  ],
+  "outputDirectory": "dist",
+  "env": {
+    "CLIENT_ID": "@client_id",
+    "CLIENT_SECRET": "@client_secret",
+    "CANVA_APP_ID": "AAG-GqJ8WhI",
+    "CANVA_APP_ORIGIN": "https://app-aag-gqj8whi.canva-apps.com"
+  },
+  "cache": {
+    "patterns": ["dist/**/*"],
+    "ttl": 31536000
+  }
+}

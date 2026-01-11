@@ -37,8 +37,14 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "assets": ["./assets"],
-      "styles": ["./styles"]
+      "src/*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "utils/*": ["src/utils/*"],
+      "context/*": ["src/context/*"],
+      "routes/*": ["src/routes/*"],
+      "pages/*": ["src/pages/*"],
+      "assets/*": ["assets/*"],
+      "styles/*": ["styles/*"]
     }
   },
   "include": [

@@ -1,21 +1,25 @@
-import { Box, Rows } from "@canva/app-ui-kit";
-import { Outlet } from "react-router-dom";
-import * as styles from "styles/components.css";
-import { AppError } from "../../components";
+import { Scrollable, Rows, Text, Box } from "@canva/app-ui-kit";
+import { FormattedMessage } from "react-intl";
 
-export const Home = () => (
-  <div className={styles.scrollContainer}>
-    <Box
-      justifyContent="center"
-      width="full"
-      alignItems="start"
-      display="flex"
-      height="full"
-    >
-      <Rows spacing="3u">
-        <AppError />
-        <Outlet />
-      </Rows>
-    </Box>
-  </div>
-);
+export const Home = () => {
+  return (
+    <Scrollable>
+      <Box padding="medium" background="neutralLow" borderRadius="medium">
+        <Rows spacing="large" alignment="center">
+          <Text size="large" weight="bold">
+            <FormattedMessage
+              defaultMessage="Bienvenido"
+              description="Título de la pantalla inicial"
+            />
+          </Text>
+          <Text tone="secondary" size="medium">
+            <FormattedMessage
+              defaultMessage="Esta es la pantalla inicial de tu conector."
+              description="Texto introductorio en la pantalla Home"
+            />
+          </Text>
+        </Rows>
+      </Box>
+    </Scrollable>
+  );
+};

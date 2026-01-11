@@ -1,18 +1,16 @@
 import {
-  Box,
-  Button,
-  LoadingIndicator,
+  Scrollable,
   Rows,
   Text,
-  Title,
+  Button,
+  LoadingIndicator,
+  Box,
 } from "@canva/app-ui-kit";
 import { useCallback, useEffect, useState } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { scope } from "src/api";
-import { Header } from "src/components";
 import { Paths } from "src/routes/paths";
-import * as styles from "styles/components.css";
 import { useAppContext } from "../context";
 
 export const Login = () => {
@@ -24,13 +22,10 @@ export const Login = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Redirect if already authenticated
     if (isAuthenticated) {
       navigate(Paths.ENTRYPOINT);
       return;
     }
-
-    // check if the user is already authenticated
     retrieveAndSetToken();
   }, [isAuthenticated]);
 
@@ -46,8 +41,6 @@ export const Login = () => {
     }
   }, [oauth]);
 
-  // you MUST call getAccessToken every time you need a token, as the token may expire.
-  // Canva will handle caching and refreshing the token for you.
   const retrieveAndSetToken = useCallback(
     async (forceRefresh = false) => {
       try {
@@ -63,48 +56,31 @@ export const Login = () => {
   );
 
   return (
-    <div className={styles.scrollContainer}>
-      <Box
-        justifyContent="center"
-        width="full"
-        alignItems="center"
-        display="flex"
-        height="full"
-      >
-        {error && (
-          <Rows spacing="2u">
-            <Title>
-              <FormattedMessage {...loginMessages.authorizationError} />
-            </Title>
-            <Text>{error}</Text>
-            <Button variant="primary" onClick={authorize}>
-              {intl.formatMessage(loginMessages.tryAgain)}
-            </Button>
-          </Rows>
-        )}
+    <Scrollable>
+      <Rows spacing="large" alignment="center">
+        <Text size="large" weight="bold">
+          <FormattedMessage
+            defaultMessage="Inicia sesión"
+            description="Título de la pantalla de login"
+          />
+        </Text>
+        <Button variant="primary" onClick={authorize}>
+          <FormattedMessage {...loginMessages.signIntoCanva} />
+        </Button>
         {loading && <LoadingIndicator />}
-        {!loading && !error && (
-          <Rows spacing="2u">
-            <Header
-              title={intl.formatMessage(loginMessages.signInRequired)}
-              showBack={false}
-            />
-            <Text>
-              <FormattedMessage {...loginMessages.dataConnectorsOAuth} />
+        {error && (
+          <Box padding="small" background="negativeLow" borderRadius="medium">
+            <Text tone="negative">
+              <FormattedMessage {...loginMessages.authorizationError} />:{" "}
+              {error}
             </Text>
-            <Text>
-              <FormattedMessage {...loginMessages.exampleDemonstration} />
-            </Text>
-            <Text>
-              <FormattedMessage {...loginMessages.setupInstructions} />
-            </Text>
-            <Button variant="primary" onClick={authorize}>
-              {intl.formatMessage(loginMessages.signIntoCanva)}
+            <Button variant="secondary" onClick={authorize}>
+              <FormattedMessage {...loginMessages.tryAgain} />
             </Button>
-          </Rows>
+          </Box>
         )}
-      </Box>
-    </div>
+      </Rows>
+    </Scrollable>
   );
 };
 
@@ -117,26 +93,6 @@ const loginMessages = defineMessages({
   tryAgain: {
     defaultMessage: "Try again",
     description: "Button text to retry authorization after an error occurs",
-  },
-  signInRequired: {
-    defaultMessage: "Sign in required",
-    description:
-      "Header title for the login page indicating authentication is needed",
-  },
-  dataConnectorsOAuth: {
-    defaultMessage:
-      "Data connectors can use OAuth to authenticate with other platforms.",
-    description: "Body text shown when the user is prompted to sign in",
-  },
-  exampleDemonstration: {
-    defaultMessage:
-      "This example demonstrates how to do this with the Canva Connect API.",
-    description: "Body text shown when the user is prompted to sign in",
-  },
-  setupInstructions: {
-    defaultMessage:
-      "For set up instructions please see the README.md in the root folder.",
-    description: "Body text shown when the user is prompted to sign in",
   },
   signIntoCanva: {
     defaultMessage: "Sign into Canva",

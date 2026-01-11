@@ -1,8 +1,11 @@
-.DS_Store
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build
+dist/
+*.log
+
+# Env
 .env
-.idea
-.ssl
-*.log*
-**/*/db.json
-dist
-node_modules
