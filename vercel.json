@@ -1,8 +1,14 @@
 {
   "version": 2,
   "builds": [
-    { "src": "server.js", "use": "@vercel/node" },
-    { "src": "dist/app.js", "use": "@vercel/static-build" }
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/app.js",
+      "use": "@vercel/static-build"
+    }
   ],
   "routes": [
     { "src": "/oauth/(.*)", "dest": "/server.js" },
@@ -16,9 +22,5 @@
     "CANVA_APP_ID": "AAG-GqJ8WhI",
     "CANVA_APP_ORIGIN": "https://app-aag-gqj8whi.canva-apps.com",
     "CANVA_BACKEND_HOST": "https://shopinista-app.vercel.app"
-  },
-  "cache": {
-    "patterns": ["dist/**/*"],
-    "ttl": 31536000
   }
 }

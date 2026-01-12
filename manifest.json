@@ -12,6 +12,10 @@
     {
       "name": "open",
       "entryPoint": "dist/app.js"
+    },
+    {
+      "name": "data_connector",
+      "entryPoint": "dist/app.js"
     }
   ],
   "oauth": {
