@@ -1,0 +1,25 @@
+{
+  "manifestVersion": "1.0",
+  "id": "AAG-GqJ8WhI",
+  "name": "Shopinista App",
+  "description": "Integración de backend con OAuth y API para ShopinistaMeta",
+  "version": "1.0.0",
+  "permissions": ["api", "oauth"],
+  "backend": {
+    "url": "https://9cc05559607f.ngrok-free.app"
+  },
+  "intents": [
+    {
+      "name": "open",
+      "entryPoint": "dist/app.js"
+    }
+  ],
+  "oauth": {
+    "authorizeUrl": "https://9cc05559607f.ngrok-free.app/oauth/authorize",
+    "tokenUrl": "https://9cc05559607f.ngrok-free.app/oauth/token",
+    "revokeUrl": "https://9cc05559607f.ngrok-free.app/oauth/revoke"
+  },
+  "api": {
+    "baseUrl": "https://9cc05559607f.ngrok-free.app/api"
+  }
+}
