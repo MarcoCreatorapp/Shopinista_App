@@ -1,39 +1,21 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node"
-    }
+    { "src": "server.js", "use": "@vercel/node" },
+    { "src": "dist/app.js", "use": "@vercel/static-build" }
   ],
   "routes": [
-    {
-      "src": "/oauth/authorize",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/oauth/token",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/oauth/revoke",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/$1"
-    }
+    { "src": "/oauth/(.*)", "dest": "/server.js" },
+    { "src": "/api/(.*)", "dest": "/server.js" },
+    { "src": "/(.*)", "dest": "/dist/app.js" }
   ],
   "outputDirectory": "dist",
   "env": {
     "CLIENT_ID": "@client_id",
     "CLIENT_SECRET": "@client_secret",
     "CANVA_APP_ID": "AAG-GqJ8WhI",
-    "CANVA_APP_ORIGIN": "https://app-aag-gqj8whi.canva-apps.com"
+    "CANVA_APP_ORIGIN": "https://app-aag-gqj8whi.canva-apps.com",
+    "CANVA_BACKEND_HOST": "https://shopinista-app.vercel.app"
   },
   "cache": {
     "patterns": ["dist/**/*"],
