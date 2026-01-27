@@ -1,26 +1,36 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/app.js",
-      "use": "@vercel/static-build"
-    }
+    { "src": "server/dist/server.js", "use": "@vercel/node" },
+    { "src": "dist/app.js", "use": "@vercel/static-build" }
   ],
   "routes": [
-    { "src": "/oauth/(.*)", "dest": "/server.js" },
-    { "src": "/api/(.*)", "dest": "/server.js" },
+    { "src": "/oauth/(.*)", "dest": "/server/dist/server.js" },
+    { "src": "/api/(.*)", "dest": "/server/dist/server.js" },
     { "src": "/(.*)", "dest": "/dist/app.js" }
   ],
   "outputDirectory": "dist",
   "env": {
-    "CLIENT_ID": "@client_id",
-    "CLIENT_SECRET": "@client_secret",
-    "CANVA_APP_ID": "AAG-GqJ8WhI",
-    "CANVA_APP_ORIGIN": "https://app-aag-gqj8whi.canva-apps.com",
-    "CANVA_BACKEND_HOST": "https://shopinista-app.vercel.app"
+    "CANVA_APP_ID": "AAG-GqJ8WhI"
+  },
+  "production": {
+    "env": {
+      "CANVA_APP_ORIGIN": "https://shopinista-app.vercel.app",
+      "CANVA_BACKEND_HOST": "https://shopinista-app.vercel.app",
+      "CANVA_HMR_ENABLED": "false",
+      "CANVA_APP_SECRET": "@canva_app_secret",
+      "SESSION_SECRET": "@session_secret"
+    }
+  },
+  "preview": {
+    "env": {
+      "CANVA_APP_ORIGIN": "https://shopinista-app.vercel.app",
+      "CANVA_HMR_ENABLED": "true",
+      "CANVA_FRONTEND_PORT": "8080",
+      "CANVA_BACKEND_PORT": "3001",
+      "CANVA_BACKEND_HOST": "http://localhost:3001",
+      "NGROK_AUTHTOKEN": "@ngrok_authtoken",
+      "SESSION_SECRET": "dev-session-secret"
+    }
   }
 }
